@@ -92,25 +92,14 @@ def serve_static(path):
 @app.route('/api/config', methods=['GET'])
 def get_config():
     """Get current configuration"""
-    response_data = {'configured': False, 'lnbits_available': False}
-    
-    # Check if LNBits is available
-    try:
-        import requests as req
-        resp = req.get('http://lnbits:5000/api/v1/health', timeout=2)
-        response_data['lnbits_available'] = resp.status_code == 200
-    except:
-        response_data['lnbits_available'] = False
-    
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE, 'r') as f:
             config = json.load(f)
             # Don't send sensitive data to frontend
             safe_config = {k: v for k, v in config.items() if k not in ['discord_token', 'lnbits_api_key']}
             safe_config['configured'] = bool(config.get('discord_token')) and bool(config.get('lnbits_api_key'))
-            response_data.update(safe_config)
-    
-    return jsonify(response_data)
+            return jsonify(safe_config)
+    return jsonify({'configured': False})
 
 @app.route('/api/config', methods=['POST'])
 def save_config():
@@ -119,7 +108,7 @@ def save_config():
         data = request.json
         
         # Validate required fields
-        required_fields = ['discord_token', 'guild_id', 'role_id', 
+        required_fields = ['discord_token', 'guild_id', 'role_id', 'lnbits_url', 
                           'lnbits_api_key', 'price', 'channelid', 'command_name']
         
         for field in required_fields:
@@ -128,10 +117,6 @@ def save_config():
         
         # Set defaults
         data.setdefault('invoicemessage', 'Please pay this Lightning invoice to receive your role!')
-        
-        # Auto-configure LNBits URL for Umbrel environment
-        # LNBits runs on port 5000 inside the Umbrel network
-        data['lnbits_url'] = 'http://lnbits:5000'
         
         # Save configuration
         os.makedirs(DATA_DIR, exist_ok=True)
@@ -195,7 +180,7 @@ def test_connection():
     
     # Test LNBits connection
     import requests as req
-    lnbits_url = 'http://lnbits:5000'  # Fixed URL for Umbrel LNBits
+    lnbits_url = data.get('lnbits_url', '').rstrip('/')
     lnbits_key = data.get('lnbits_api_key', '')
     
     try:
