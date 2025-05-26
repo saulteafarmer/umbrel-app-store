@@ -19,8 +19,6 @@ description: >-
   
 developer: Your Name
 website: https://github.com/yourusername/discord-lightning-bot
-dependencies: 
-  - lnbits
 repo: https://github.com/yourusername/discord-lightning-bot
 support: https://github.com/yourusername/discord-lightning-bot/issues
 port: 3050
