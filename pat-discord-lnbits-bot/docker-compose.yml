@@ -1,8 +1,7 @@
 version: "3.7"
-
 services:
   web:
-    build: .
+    image: saulteafarmer/pat-discord-lnbits-bot:latest  # Replace 'yourusername'
     restart: unless-stopped
     ports:
       - "3050:3050"
@@ -14,7 +13,6 @@ services:
     networks:
       - default
       - umbrel_main_network
-
 networks:
   default:
     name: discord-lightning-bot_network
