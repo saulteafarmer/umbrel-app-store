@@ -1,7 +1,12 @@
 version: "3.7"
 services:
+  app_proxy:
+    environment:
+      APP_HOST: pat-discord-lnbits-bot_web_1
+      APP_PORT: 3050
+    
   web:
-    image: saulteafarmer/pat-discord-lnbits-bot:latest  # Replace 'yourusername'
+    image: saulteafarmer/pat-discord-lnbits-bot:latest
     restart: unless-stopped
     ports:
       - "3050:3050"
