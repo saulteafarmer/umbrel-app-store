@@ -1,7 +1,7 @@
 manifestVersion: 1
-id: discord-lightning-bot
+id: Discord-LNBits-Bot
 category: social
-name: Discord Lightning Bot
+name: Discord LNBits Bot
 version: "1.0.0"
 tagline: Accept Lightning payments for Discord roles
 description: >-
