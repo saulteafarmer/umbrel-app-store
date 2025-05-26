@@ -307,20 +307,6 @@ header p {
     text-decoration: underline;
 }
 
-.lnbits-warning {
-    background-color: rgba(231, 76, 60, 0.1);
-    border: 1px solid var(--danger-color);
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.lnbits-warning p {
-    color: var(--danger-color);
-    margin: 0;
-    font-weight: 500;
-}
-
 .notification {
     position: fixed;
     top: 20px;
