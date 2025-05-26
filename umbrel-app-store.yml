@@ -1,2 +1,9 @@
-id: "pat" # Choose the ID for your app store. This should contain only alphabets ("a to z") and dashes ("-").
-name: "Pat" # Choose the name of your app store. It will show up in the UI as "<name> App Store".
+id: "pat"
+name: "SaulTea's App Store"
+description: "Custom apps for testing"
+developer: "SaulTeaFarmer"
+website: "https://github.com/saulteafarmer/umbrel-app-store"
+submission: "https://github.com/saulteafarmer/umbrel-app-store"
+apps:
+  - pat-discord-lnbits-bot
+  - pat-hello-world
