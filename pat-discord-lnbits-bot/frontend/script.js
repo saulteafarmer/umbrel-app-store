@@ -14,8 +14,6 @@ const refreshLogsBtn = document.getElementById('refresh-logs');
 const logsContent = document.getElementById('logs-content');
 const botStatus = document.getElementById('bot-status');
 const configStatus = document.getElementById('config-status');
-const lnbitsStatus = document.getElementById('lnbits-status');
-const lnbitsWarning = document.getElementById('lnbits-warning');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,17 +47,6 @@ async function loadConfig() {
     try {
         const response = await fetch(`${API_BASE}/config`);
         const config = await response.json();
-        
-        // Check LNBits availability
-        if (config.lnbits_available) {
-            lnbitsStatus.textContent = 'Connected';
-            lnbitsStatus.className = 'status-value running';
-            lnbitsWarning.style.display = 'none';
-        } else {
-            lnbitsStatus.textContent = 'Not Available';
-            lnbitsStatus.className = 'status-value stopped';
-            lnbitsWarning.style.display = 'block';
-        }
         
         if (config.configured) {
             configStatus.textContent = 'Configured';
