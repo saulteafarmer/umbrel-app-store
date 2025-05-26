@@ -1,0 +1,33 @@
+manifestVersion: 1
+id: discord-lightning-bot
+category: social
+name: Discord Lightning Bot
+version: "1.0.0"
+tagline: Accept Lightning payments for Discord roles
+description: >-
+  A Discord bot that automatically grants roles to users who pay via Lightning Network.
+  
+  Connect your Discord server with Bitcoin Lightning payments through LNBits. 
+  Users can pay a specified amount in sats to automatically receive a role in your Discord server.
+  
+  Features:
+  - Easy web interface for configuration
+  - Real-time payment verification via LNBits websocket
+  - Customizable payment amounts and role assignments
+  - Support for multiple Discord servers
+  - QR code generation for easy mobile payments
+  
+developer: Your Name
+website: https://github.com/yourusername/discord-lightning-bot
+dependencies: 
+  - lnbits
+repo: https://github.com/yourusername/discord-lightning-bot
+support: https://github.com/yourusername/discord-lightning-bot/issues
+port: 3050
+gallery:
+  - https://i.imgur.com/your-screenshot1.png
+  - https://i.imgur.com/your-screenshot2.png
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+torOnly: false

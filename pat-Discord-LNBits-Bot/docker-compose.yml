@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3050:3050"
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/data
+    environment:
+      - APP_DATA_DIR=/app/data
+      - NODE_ENV=production
+    networks:
+      - default
+      - umbrel_main_network
+
+networks:
+  default:
+    name: discord-lightning-bot_network
+  umbrel_main_network:
+    external: true

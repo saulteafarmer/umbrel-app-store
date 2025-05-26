@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Lightning Bot - Configuration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Discord Lightning Bot</h1>
+            <p>Accept Lightning payments for Discord roles</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Bot Status:</span>
+                <span id="bot-status" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Configuration:</span>
+                <span id="config-status" class="status-value">Loading...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">LNBits:</span>
+                <span id="lnbits-status" class="status-value">Checking...</span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('config')">Configuration</button>
+            <button class="tab-button" onclick="showTab('logs')">Logs</button>
+            <button class="tab-button" onclick="showTab('help')">Help</button>
+        </div>
+
+        <div id="config-tab" class="tab-content active">
+            <form id="config-form">
+                <div class="form-section">
+                    <h2>Discord Settings</h2>
+                    <div class="form-group">
+                        <label for="discord_token">Discord Bot Token</label>
+                        <input type="password" id="discord_token" name="discord_token" required>
+                        <small>Your Discord bot token from the Discord Developer Portal</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="guild_id">Guild (Server) ID</label>
+                        <input type="text" id="guild_id" name="guild_id" pattern="[0-9]+" required>
+                        <small>Right-click your server name and select "Copy ID"</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="role_id">Role ID</label>
+                        <input type="text" id="role_id" name="role_id" pattern="[0-9]+" required>
+                        <small>The role to grant when payment is received</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="channelid">Invoice Channel ID</label>
+                        <input type="text" id="channelid" name="channelid" pattern="[0-9]+" required>
+                        <small>Channel where invoices will be posted</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="command_name">Slash Command Name</label>
+                        <input type="text" id="command_name" name="command_name" value="support" required>
+                        <small>Users will type /[command] to get an invoice</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Lightning Settings</h2>
+                    <div class="lnbits-warning" id="lnbits-warning" style="display: none;">
+                        <p>⚠️ LNBits is not detected. Please install LNBits from the Umbrel App Store first.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="lnbits_api_key">LNBits Invoice/Read Key</label>
+                        <input type="password" id="lnbits_api_key" name="lnbits_api_key" required>
+                        <small>From your LNBits wallet: Wallet → API keys → Invoice/read key</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price (sats)</label>
+                        <input type="number" id="price" name="price" min="1" value="1000" required>
+                        <small>Amount to charge for the role</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="invoicemessage">Invoice Message</label>
+                        <textarea id="invoicemessage" name="invoicemessage" rows="3">Please pay this Lightning invoice to receive your role!</textarea>
+                        <small>Message shown with the invoice</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="test-btn" class="secondary-btn">Test Connections</button>
+                    <button type="submit" class="primary-btn">Save Configuration</button>
+                </div>
+            </form>
+
+            <div class="bot-controls">
+                <h3>Bot Control</h3>
+                <div class="control-buttons">
+                    <button id="start-btn" class="control-btn start">Start Bot</button>
+                    <button id="stop-btn" class="control-btn stop">Stop Bot</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="logs-tab" class="tab-content">
+            <div class="logs-header">
+                <h2>Bot Logs</h2>
+                <button id="refresh-logs" class="secondary-btn">Refresh</button>
+            </div>
+            <div id="logs-container">
+                <pre id="logs-content">Loading logs...</pre>
+            </div>
+        </div>
+
+        <div id="help-tab" class="tab-content">
+            <div class="help-content">
+                <h2>Setup Guide</h2>
+                
+                <h3>1. Discord Bot Setup</h3>
+                <ol>
+                    <li>Go to <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a></li>
+                    <li>Create a new application and bot</li>
+                    <li>Copy the bot token</li>
+                    <li>Enable "Server Members Intent" in the bot settings</li>
+                    <li>Invite the bot to your server with "Manage Roles" permission</li>
+                    <li>Make sure the bot's role is above the role you want to assign</li>
+                </ol>
+
+                <h3>2. Getting Discord IDs</h3>
+                <ol>
+                    <li>Enable Developer Mode in Discord Settings → Advanced</li>
+                    <li>Right-click your server name → Copy ID (Guild ID)</li>
+                    <li>Right-click the role → Copy ID (Role ID)</li>
+                    <li>Right-click the channel → Copy ID (Channel ID)</li>
+                </ol>
+
+                <h3>3. LNBits Setup</h3>
+                <ol>
+                    <li>Install LNBits from the Umbrel App Store if not already installed</li>
+                    <li>Open LNBits and create or select a wallet</li>
+                    <li>Go to the wallet and click on "API keys"</li>
+                    <li>Copy the "Invoice/read key" (NOT the Admin key)</li>
+                    <li>Paste it in the configuration form</li>
+                </ol>
+
+                <h3>4. Configuration</h3>
+                <ol>
+                    <li>Fill in all the configuration fields</li>
+                    <li>Test the connections</li>
+                    <li>Save the configuration</li>
+                    <li>Start the bot</li>
+                </ol>
+
+                <h3>Troubleshooting</h3>
+                <ul>
+                    <li><strong>Bot not responding:</strong> Check the logs tab for errors</li>
+                    <li><strong>Role not assigned:</strong> Ensure bot role is higher than the assigned role</li>
+                    <li><strong>Invoice not created:</strong> Verify LNBits connection and API key</li>
+                    <li><strong>Commands not showing:</strong> Bot may need to be re-invited or commands need time to sync</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
