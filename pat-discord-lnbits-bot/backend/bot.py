@@ -35,7 +35,7 @@ except json.JSONDecodeError:
 TOKEN = config.get("discord_token")
 GUILD_ID = int(config.get("guild_id", 0))
 ROLE_ID = int(config.get("role_id", 0))
-LNBITS_URL = config.get("lnbits_url", "http://lnbits_web_1:5000")
+LNBITS_URL = config.get("lnbits_url")
 LNBITS_API_KEY = config.get("lnbits_api_key")
 PRICE = config.get("price")
 CHANNEL_ID = int(config.get("channelid", 0))
