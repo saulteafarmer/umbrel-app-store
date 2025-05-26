@@ -22,10 +22,6 @@
                 <span class="status-label">Configuration:</span>
                 <span id="config-status" class="status-value">Loading...</span>
             </div>
-            <div class="status-item">
-                <span class="status-label">LNBits:</span>
-                <span id="lnbits-status" class="status-value">Checking...</span>
-            </div>
         </div>
 
         <div class="tabs">
@@ -67,13 +63,15 @@
 
                 <div class="form-section">
                     <h2>Lightning Settings</h2>
-                    <div class="lnbits-warning" id="lnbits-warning" style="display: none;">
-                        <p>⚠️ LNBits is not detected. Please install LNBits from the Umbrel App Store first.</p>
+                    <div class="form-group">
+                        <label for="lnbits_url">LNBits URL</label>
+                        <input type="url" id="lnbits_url" name="lnbits_url" placeholder="https://your-lnbits-instance.com" required>
+                        <small>Your LNBits instance URL</small>
                     </div>
                     <div class="form-group">
-                        <label for="lnbits_api_key">LNBits Invoice/Read Key</label>
+                        <label for="lnbits_api_key">LNBits API Key</label>
                         <input type="password" id="lnbits_api_key" name="lnbits_api_key" required>
-                        <small>From your LNBits wallet: Wallet → API keys → Invoice/read key</small>
+                        <small>Invoice/read key from your LNBits wallet</small>
                     </div>
                     <div class="form-group">
                         <label for="price">Price (sats)</label>
@@ -136,11 +134,10 @@
 
                 <h3>3. LNBits Setup</h3>
                 <ol>
-                    <li>Install LNBits from the Umbrel App Store if not already installed</li>
-                    <li>Open LNBits and create or select a wallet</li>
-                    <li>Go to the wallet and click on "API keys"</li>
-                    <li>Copy the "Invoice/read key" (NOT the Admin key)</li>
-                    <li>Paste it in the configuration form</li>
+                    <li>Access your LNBits instance</li>
+                    <li>Create or select a wallet</li>
+                    <li>Copy the "Invoice/read key"</li>
+                    <li>Make sure your LNBits instance is accessible from your Umbrel</li>
                 </ol>
 
                 <h3>4. Configuration</h3>
