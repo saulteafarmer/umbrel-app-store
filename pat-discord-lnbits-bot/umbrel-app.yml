@@ -17,14 +17,14 @@ description: >-
   - Support for multiple Discord servers
   - QR code generation for easy mobile payments
   
-developer: Your Name
-website: https://github.com/yourusername/discord-lightning-bot
-repo: https://github.com/yourusername/discord-lightning-bot
-support: https://github.com/yourusername/discord-lightning-bot/issues
+developer: SaulTeaFarmer
+website: https://github.com/saulteafarmer/umbrel-app-store
+repo: https://github.com/saulteafarmer/umbrel-app-store
+support: https://github.com/saulteafarmer/umbrel-app-store/issues
 port: 3050
 gallery:
-  - https://i.imgur.com/your-screenshot1.png
-  - https://i.imgur.com/your-screenshot2.png
+  - https://relay.patrickulrich.com/bb8b0682059fdabed2c023d2ff25bf9e47100bd8d205a95730d59dd18beae34a.png
+  - https://relay.patrickulrich.com/88d0a9b0f3ef47f52831976e3eb261dd98283b0590927f53384f02c0e7ee5c47.png
 path: ""
 defaultUsername: ""
 defaultPassword: ""
